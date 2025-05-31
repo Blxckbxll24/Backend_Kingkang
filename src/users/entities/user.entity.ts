@@ -1,5 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
+import { Order } from '../../orders/entities/order.entity';
+import { Cart } from '../../carts/entities/cart.entity'; // Import Cart entity
+
 @Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
@@ -19,7 +22,7 @@ export class User {
 
     @ManyToOne(() => Role, (role) => role.users, {
         eager: true,
-        onDelete: 'CASCADE', 
+        onDelete: 'CASCADE',
     })
     @JoinColumn({ name: 'roleId' })
     role: Role;
@@ -28,4 +31,16 @@ export class User {
     @Column({ nullable: true })
     roleId?: number;
 
+    @OneToMany(() => Order, (order) => order.user)
+    orders: Order[];
+    
+    @Column({ nullable: true })
+    cartId?: number;
+    // agregar relaciones de carrito 
+    @OneToMany(() => Cart, (cart) => cart.user)
+     carts: Cart[];
+
+ // Agregar campo para relacionar con el carrito
+
+     
 }
