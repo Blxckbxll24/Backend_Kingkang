@@ -8,6 +8,18 @@ import { Role } from './roles/entities/role.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { ProductsModule } from './products/products.module';
+import { CategoriesModule } from './categories/categories.module';
+import { OrdersModule } from './orders/orders.module';
+import { OrderItemsModule } from './order_items/order_items.module';
+import { CartsModule } from './carts/carts.module';
+import { CartItemsModule } from './cart_items/cart_items.module';
+import { Order } from './orders/entities/order.entity';
+import { Product } from './products/entities/product.entity';
+import { OrderItem } from './order_items/entities/order_item.entity';
+import { Cart } from './carts/entities/cart.entity';
+import { CartItem } from './cart_items/entities/cart_item.entity';
+import { Category } from './categories/entities/category.entity';
 
 
 
@@ -23,13 +35,19 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Role],
+      entities: [User, Role, Order, Product, OrderItem, Cart, CartItem,Category],
       autoLoadEntities: true,
       synchronize: true,
     }),
     UsersModule,
     RolesModule,
-    AuthModule
+    AuthModule,
+    ProductsModule,
+    CategoriesModule,
+    OrdersModule,
+    OrderItemsModule,
+    CartsModule,
+    CartItemsModule
   ],
   controllers: [AppController],
   providers: [AppService],
