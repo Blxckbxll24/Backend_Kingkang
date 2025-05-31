@@ -2,6 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 import { Category } from "../../categories/entities/category.entity";
 import { Product } from "../../products/entities/product.entity";
 import { Order } from "../../orders/entities/order.entity";
+import { IsBoolean } from "class-validator";
 
 @Entity('order_items')
 export class OrderItem {
@@ -27,4 +28,8 @@ export class OrderItem {
 
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
+
+  @Column()
+  @IsBoolean()
+  isActive: boolean = true;
 }
