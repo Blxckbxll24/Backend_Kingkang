@@ -20,6 +20,11 @@ import { OrderItem } from './order_items/entities/order_item.entity';
 import { Cart } from './carts/entities/cart.entity';
 import { CartItem } from './cart_items/entities/cart_item.entity';
 import { Category } from './categories/entities/category.entity';
+import { SessionsModule } from './sessions/sessions.module';
+import { LogsModule } from './logs/logs.module';
+import { LogsService } from './logs/logs.service';
+import { LogEntity } from './logs/entities/log.entity';
+import { SessionEntity } from './sessions/entities/session.entity';
 
 
 
@@ -35,7 +40,7 @@ import { Category } from './categories/entities/category.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Role, Order, Product, OrderItem, Cart, CartItem,Category],
+      entities: [User, Role, Order, Product, OrderItem, Cart, CartItem,Category,LogEntity, SessionEntity],
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -47,7 +52,9 @@ import { Category } from './categories/entities/category.entity';
     OrdersModule,
     OrderItemsModule,
     CartsModule,
-    CartItemsModule
+    CartItemsModule,
+    LogsModule,
+    SessionsModule
   ],
   controllers: [AppController],
   providers: [AppService],

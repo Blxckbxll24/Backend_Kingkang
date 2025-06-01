@@ -5,9 +5,10 @@ import { Type } from 'class-transformer';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from 'src/orders/entities/order.entity';
 import { OrderItem } from './entities/order_item.entity';
+import { LogsModule } from 'src/logs/logs.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order, OrderItem])],
+  imports: [TypeOrmModule.forFeature([Order, OrderItem]), LogsModule], // Import Order and OrderItem entities
   controllers: [OrderItemsController],
   providers: [OrderItemsService],
   exports: [OrderItemsService],
