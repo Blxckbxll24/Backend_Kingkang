@@ -6,9 +6,10 @@ import { Order } from './entities/order.entity';
 import { OrderItem } from '../order_items/entities/order_item.entity';
 import { Cart } from '../carts/entities/cart.entity';
 import { CartItem } from '../cart_items/entities/cart_item.entity';
+import { LogsModule } from 'src/logs/logs.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order, OrderItem, Cart, CartItem])],
+  imports: [TypeOrmModule.forFeature([Order, OrderItem, Cart, CartItem]), LogsModule],
   controllers: [OrdersController],
   providers: [OrdersService],
   exports: [OrdersService],
