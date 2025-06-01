@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "../../users/entities/user.entity";
 import { OrderItem } from "../../order_items/entities/order_item.entity";
 
@@ -23,8 +23,11 @@ export class Order {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
+  @DeleteDateColumn({ nullable: true })
+  deletedAt?: Date;
+
 
   @OneToMany(() => OrderItem, (item) => item.order, { cascade: true })
-items: OrderItem[];
+  items: OrderItem[];
 
 }
