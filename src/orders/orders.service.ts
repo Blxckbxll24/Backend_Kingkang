@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './entities/order.entity';
@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { OrderItem } from '../order_items/entities/order_item.entity'
 import { Cart } from '../carts/entities/cart.entity';
 import { CartItem } from 'src/cart_items/entities/cart_item.entity';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class OrdersService {
@@ -38,6 +38,7 @@ export class OrdersService {
           productId: item.productId,
           quantity: item.quantity,
           price: item.product.price,
+          total: item.quantity * item.product.price,
         }),
       ),
     });
@@ -56,29 +57,44 @@ export class OrdersService {
     });
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
+    if (!id || isNaN(id)) {
+      console.error('[OrdersService] ID inválido en findOne:', id);
+      throw new BadRequestException('El ID es inválido');
+    }
     return this.repo.findOne({
       where: { id },
       relations: ['items', 'items.product'],
     });
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+  // update(id: number, updateOrderDto: UpdateOrderDto) {
+  //   return `This action updates a #${id} order`;
+  // }
+
+  async remove(id: number) {
+    const order = await this.repo.findOne({ where: { id } });
+    if (!order) {
+      throw new HttpException('Orden no encontrada', HttpStatus.NOT_FOUND);
+    }
+    await this.repo.softRemove(order);
+    return { message: 'Orden eliminada correctamente (soft delete)' };
   }
 
- async  remove(id: number) {
-  // const order = await this.repo.findOne({ where: { id } });
-  // if (order) {
-  //   order.items.forEach(item => {
-  //     item.isActive = false;
-  //     this.orderItemRepo.save(item);
-  //   });
-  //   this.repo.save(order);
-  //   return order;
-  // }
-  // throw new HttpException('Order not found', HttpStatus.NOT_FOUND);
-  return  'hola mundo';
+  async restore(id: number) {
+    const order = await this.repo.findOne({ where: { id }, withDeleted: true });
+    if (!order) {
+      throw new HttpException('Orden no encontrada', HttpStatus.NOT_FOUND);
+    }
+    await this.repo.restore(id);
+    return { message: 'Orden restaurada correctamente' };
+  }
+
+  async findAllDeleted() {
+    return this.repo.find({
+      withDeleted: true,
+      where: { deletedAt: Not(IsNull()) },
+    });
   }
 
 

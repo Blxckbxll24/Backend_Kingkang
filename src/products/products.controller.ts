@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('products')
 
@@ -11,6 +11,7 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Crear nuevo Producto' })
   @ApiBody({
     type: CreateProductDto,
   })
@@ -19,16 +20,19 @@ export class ProductsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Obtener todos los Productos' })
   findAll() {
     return this.productsService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Obtener Producto por ID' })
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(+id);
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Actualizar Producto por ID' })
   @ApiBody({
     type: UpdateProductDto,
   })
@@ -37,6 +41,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Eliminar Producto por ID' })
   remove(@Param('id') id: string) {
     return this.productsService.remove(+id);
   }

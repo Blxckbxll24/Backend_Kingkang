@@ -29,7 +29,7 @@ export class OrderItem {
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
-  @Column()
-  @IsBoolean()
-  isActive: boolean = true;
+  @Column('decimal', { precision: 10, scale: 2 })
+  total: number;
+
 }
