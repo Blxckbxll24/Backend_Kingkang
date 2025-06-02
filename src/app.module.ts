@@ -25,6 +25,7 @@ import { LogsModule } from './logs/logs.module';
 import { LogsService } from './logs/logs.service';
 import { LogEntity } from './logs/entities/log.entity';
 import { SessionEntity } from './sessions/entities/session.entity';
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 
 
@@ -54,7 +55,8 @@ import { SessionEntity } from './sessions/entities/session.entity';
     CartsModule,
     CartItemsModule,
     LogsModule,
-    SessionsModule
+    SessionsModule,
+    FileUploadModule
   ],
   controllers: [AppController],
   providers: [AppService],
