@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CartItem } from './entities/cart_item.entity';
-import { Cart } from 'src/carts/entities/cart.entity';
-import { LogsService } from 'src/logs/logs.service'; // Asegúrate de que la ruta sea correcta
+import { Cart } from '../carts/entities/cart.entity';
+import { LogsService } from '../logs/logs.service'; // Asegúrate de que la ruta sea correcta
 
 @Injectable()
 export class CartItemsService {

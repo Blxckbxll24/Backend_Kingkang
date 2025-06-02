@@ -6,9 +6,9 @@ import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { Cart } from './entities/cart.entity';
 import { CartItem } from '../cart_items/entities/cart_item.entity';
-import { Product } from 'src/products/entities/product.entity';
-import { User } from 'src/users/entities/user.entity';
-import { LogsService } from 'src/logs/logs.service';
+import { Product } from '../products/entities/product.entity';
+import { User } from '../users/entities/user.entity';
+import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class CartsService {
