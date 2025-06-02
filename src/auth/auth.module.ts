@@ -5,9 +5,9 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { LogsModule } from 'src/logs/logs.module';
-import { SessionsModule } from 'src/sessions/sessions.module'; // Assuming you have a SessionsModule for session management
-import { LogEntity } from 'src/logs/entities/log.entity';
+import { LogsModule } from '../logs/logs.module';
+import { SessionsModule } from '../sessions/sessions.module'; // Assuming you have a SessionsModule for session management
+import { LogEntity } from '../logs/entities/log.entity';
 
 @Module({
   imports: [
