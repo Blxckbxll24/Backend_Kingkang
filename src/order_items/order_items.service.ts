@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { OrderItem } from './entities/order_item.entity';
-import { Order } from 'src/orders/entities/order.entity';
-import { LogsService } from 'src/logs/logs.service';
+import { Order } from '../orders/entities/order.entity';
+import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class OrderItemsService {

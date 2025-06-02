@@ -5,8 +5,8 @@ import { Repository, IsNull, Not } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { OrderItem } from '../order_items/entities/order_item.entity';
 import { Cart } from '../carts/entities/cart.entity';
-import { CartItem } from 'src/cart_items/entities/cart_item.entity';
-import { LogsService } from 'src/logs/logs.service';
+import { CartItem } from '../cart_items/entities/cart_item.entity';
+import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class OrdersService {
