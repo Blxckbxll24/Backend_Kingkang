@@ -26,6 +26,8 @@ import { LogsService } from './logs/logs.service';
 import { LogEntity } from './logs/entities/log.entity';
 import { SessionEntity } from './sessions/entities/session.entity';
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { MailsModule } from './mails/mails.module';
+import { Mail } from './mails/entities/mail.entity';
 
 
 
@@ -41,7 +43,7 @@ import { FileUploadModule } from './file-upload/file-upload.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Role, Order, Product, OrderItem, Cart, CartItem,Category,LogEntity, SessionEntity],
+      entities: [User, Role, Order, Product, OrderItem, Cart, CartItem,Category,LogEntity, SessionEntity, Mail],
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -56,7 +58,8 @@ import { FileUploadModule } from './file-upload/file-upload.module';
     CartItemsModule,
     LogsModule,
     SessionsModule,
-    FileUploadModule
+    FileUploadModule,
+    MailsModule
   ],
   controllers: [AppController],
   providers: [AppService],
