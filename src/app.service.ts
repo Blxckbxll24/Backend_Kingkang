@@ -3,6 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Coto es gay';
+    return 'Componentes de Kingkang API funcionando correctamente';
   }
 }
