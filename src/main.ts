@@ -8,13 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const appCors = await NestFactory.create(AppModule, { cors: true });
 
-  appCors.enableCors({
-    origin: ['http://localhost:5173'],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type, Accept, Authorization',
-    credentials: true,
-  });
-
   const config = new DocumentBuilder()
     .setTitle('Kingkang API')
     .setDescription('api del ecoommerce de Kingkang')
