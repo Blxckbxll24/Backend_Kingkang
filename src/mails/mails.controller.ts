@@ -30,4 +30,8 @@ export class MailsController {
   restore(@Param('id') id: string) {
     return this.mailsService.restore(+id);
   }
+  @Patch(':id/status')
+  updateStatus(@Param('id') id: string, @Body('status') status: string) {
+    return this.mailsService.updateStatus(+id, { status });
+  }
 }

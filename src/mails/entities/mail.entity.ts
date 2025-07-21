@@ -13,11 +13,8 @@ export class Mail {
     phone: string;
     @Column()
     message: string;
-      @ManyToOne(() => User, (user) => user.orders, { eager: true })
-      @JoinColumn({ name: 'userId' })
-      user: User;
     @Column()
-    userId: number;
+    status: string; // 'pending', 'sent', 'error'
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
     @DeleteDateColumn({ nullable: true })

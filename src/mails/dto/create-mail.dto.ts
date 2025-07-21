@@ -15,6 +15,6 @@ export class CreateMailDto {
     @IsString()
     message: string;
     @ApiProperty()
-    @IsNumber()
-    userId: number;
+    @IsString()
+    status: string; // 'pending', 'sent', 'error
 }
